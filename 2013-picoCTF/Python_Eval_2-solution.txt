@@ -1,0 +1,13 @@
+root@kali32:~$ nc python.picoctf.com 6362
+Master Mind Game
+I've set my code. Guess it!
+Rules: You should input your guesses as 5 digits separated by commas.
+       I will respond by marking the correct digits with a 2, marking
+       digits in the wrong place with a 1, and marking wrong digits 0.
+guess> 1,2,3,4,flag
+ ---------------------
+ | 1 | 2 | 3 | 4 | i_are_a_pyeval_mastermind |
+ ---------------------
+ ---------------------
+ | 1 | 0 | 0 | 0 | 0 |
+ ---------------------
