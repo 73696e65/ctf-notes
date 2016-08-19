@@ -1,0 +1,18 @@
+# You have found a passwd file containing salted passwords. An unprotected
+# configuration file has revealed a salt of 4734. The hashed password for the
+# 'admin' user appears to be 58e4468d3f6104acfb7d7ea50b31daea, try to brute force
+# this password.
+
+root@kali32:~$ cat hash.test
+admin:58e4468d3f6104acfb7d7ea50b31daea$4734
+
+root@kali32:~$ john --list=subformats
+...
+Format = dynamic_1   type = dynamic_1: md5($p.$s) (joomla)
+Format = dynamic_2   type = dynamic_2: md5(md5($p)) (e107)
+Format = dynamic_3   type = dynamic_3: md5(md5(md5($p)))
+Format = dynamic_4   type = dynamic_4: md5($s.$p) (OSC)
+...
+
+root@kali32:~$ john -form=dynamic_1 hash.test --wordlist="/usr/share/wordlists/rockyou.txt"
+daemon           (admin)
