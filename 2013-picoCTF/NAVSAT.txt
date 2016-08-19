@@ -1,0 +1,37 @@
+# Near the Sun, you find a malfunctioning warp beacon which is broadcasting a
+# distress signal in a navigational channel. It looks like it's been damaged by
+# solar radiation, and some of its data have been corrupted. If you can recover
+# it, perhaps it will point at you to something interesting.
+
+root@kali32:~$ file -s recovery.zip
+recovery.zip: data
+
+root@kali32:~$ unzip recovery.zip
+Archive:  recovery.zip
+file #1:  bad zipfile offset (local header sig):  0
+  inflating: Mag7-BW/Chart-15.pdf
+
+# Nothing interesting here
+root@kali32:~$ jar xvf recovery.zip
+
+root@kali32:~$ strings recovery.zip  | grep Mag7
+Mag7-BW/key.txtUT
+Mag7-BW/Chart-15.pdfUT
+Mag7-BW/UT
+Mag7-BW/key.txtUT
+Mag7-BW/Chart-15.pdfUT
+Mag7-BW/UT
+
+# Change first two bytes of the file to match ZIP header
+root@kali32:~$ echo -ne "\x50\x4B" | dd conv=notrunc bs=1 count=2 of=recovery.zip
+2+0 records in
+2+0 records out
+2 bytes (2 B) copied, 0.00185076 s, 1.1 kB/s
+
+root@kali32:~$ unzip recovery.zip
+Archive:  recovery.zip
+ extracting: Mag7-BW/key.txt
+  inflating: Mag7-BW/Chart-15.pdf
+  
+root@kali32:~$ cat Mag7-BW/key.txt
+Key: Next stop Tau Eridani
