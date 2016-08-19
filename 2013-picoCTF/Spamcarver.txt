@@ -1,0 +1,19 @@
+# While exploring an alien tomb, you find an ancient jpg of an ancient can of
+# SPAM. It seems valueless, but the guardbots really want it back, so perhaps
+# there's something more here than meets the eye. Maybe it's cursed, or hexed, if
+# you will?
+
+root@kali32:~$ dd if=spamcarver.jpg bs=1 skip=52110 > file.zip
+
+root@kali32:~$ file -s file.zip
+file.zip: Zip archive data, at least v2.0 to extract
+
+root@kali32:~$ unzip file.zip
+Archive:  file.zip
+  inflating:
+  
+root@kali32:~$ unzip file.zip
+Archive:  file.zip
+replace         ? [y]es, [n]o, [A]ll, [N]one, [r]ename: r
+new name: image.jpg
+  inflating: image.jpg
