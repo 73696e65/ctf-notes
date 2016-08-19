@@ -1,0 +1,13 @@
+# While refueling at a gas giant, you are hailed by a race of cuttlefish-people
+# who dwell within it. Their transmission is entirely visual; you suspect that
+# they may be communicating through the color values.
+
+root@kali32:~$ git clone https://github.com/luca-m/lsb-toolkit
+
+root@kali32:~$ cd lsb-toolkit/
+
+root@kali32:~/lsb-toolkit on master $ python lsb-extract.py -f steg.png -c rgb -b 0 -a Lsb
+[ ..garbage .. ]
+
+root@kali32:~/lsb-toolkit on master $ python lsb-extract.py -f steg.png -c rgb -b 0 -a Lsb --vertical
+Hey I think we can write safely in this file without anyone seeing it. Anyway, the secret key is: st3g0_saurus_wr3cks
