@@ -1,0 +1,8 @@
+# Sure are a lot of stars out there... but there's a lot of empty space for things to hide in, too.
+
+# http://wiki.sleuthkit.org/index.php?title=FS_Analysis
+
+root@kali32:~$ fls -rd darkstar.img
+r/r * 211(realloc):	key.png
+
+root@kali32:~$ icat darkstar.img 211 > key.png
