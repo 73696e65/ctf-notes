@@ -1,0 +1,7 @@
+# It appears a SYN-flood style DDoS has been carried out on this system. Send us
+# a list of the IP addresses of the attackers (in any order, separated by
+# spaces), so we can track them down and stop them.
+
+# https://www.cloudshark.org/captures/bc1c0a7fae2c
+
+tcpdump -n -r syn_attack.pcap 'tcp[tcpflags] == tcp-syn'
