@@ -1,0 +1,17 @@
+$ ./"λ.py"
+Plaintext:abcdefghijklmnopqrstuvwxyz123456789
+mlnjkrqopdceabihfg54623978vuwst1zxy
+
+ a  b  c  d  e  f  g  h  i  j  k  l  m  n  o  p  q  r  s  t  u  v  w  x  y  z  1  2  3  4  5  6  7  8  9
+01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35
+
+ m  l  n  j  k  r  q  o  p  d  c  e  a  b  i  h  f  g  5  4  6  2  3  9  7  8  v  u  w  s  t  1  z  x  y
+13 12 14 10 11 18 17 15 16 04 03 05 01 02 09 08 06 07 31 30 32 28 29 35 33 34 22 21 23 19 20 27 26 24 25
+
+ n  1  s  4  _  t  1  A  n  (  f  1  c  t  d  b  @  m  p  l  _  h  3  )  m  3  l  p  3  y  _  _  E  a  s
+13 12 14 10 11 18 17 15 16 04 03 05 01 02 09 08 06 07 31 30 32 28 29 35 33 34 22 21 23 19 20 27 26 24 25
+
+ c  t  f  (  1  @  m  b  d  4  _  1  n  s  A  n  1  t  y  _  p  l  3  a  s  E  _  h  3  l  p  _  m  3  )
+01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35
+
+ctf(1@mbd4_1nsAn1ty_pl3asE_h3lp_m3)

