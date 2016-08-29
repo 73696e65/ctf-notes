@@ -5,3 +5,5 @@ After we unzip the evil_6095a38034303df8bf2763e8f9494b3bde0fa851e0aa41a486c888b6
 
 We obtain the number (GPS coordinates):
 64 12673822 *21 92146998
+
+64.12673822, -21.92146998
