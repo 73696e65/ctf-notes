@@ -1,6 +1,6 @@
 Description: Can you alert(1) this page (in firefox)?
 
-It was not possible to use [jjencode](utf-8.jp/public/jjencode.html), because parenthesis and equal sign was filtered too.
+It was not possible to use [jjencode](http://utf-8.jp/public/jjencode.html), because parenthesis and equal sign was filtered too.
 
 Solution:
 ```
