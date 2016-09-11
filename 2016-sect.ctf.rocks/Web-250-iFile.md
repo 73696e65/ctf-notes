@@ -17,3 +17,7 @@ ETag: "c1f1b2f47ed3ad9c7785dc233fcb1ce5"
 Content-Length: 0
 Server: AmazonS3
 ```
+
+References:
+
+[https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUT.html](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUT.html)
