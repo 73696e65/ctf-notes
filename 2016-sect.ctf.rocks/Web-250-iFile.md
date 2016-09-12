@@ -18,6 +18,11 @@ Content-Length: 0
 Server: AmazonS3
 ```
 
+Alternatively we can use `curl` for uploading any file:
+```
+$ curl -s -H "Content-Type:text/plain"  http://files.filer.sect.ctf.rocks --upload-file abc.txt
+```
+
 References:
 
 [https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUT.html](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUT.html)
