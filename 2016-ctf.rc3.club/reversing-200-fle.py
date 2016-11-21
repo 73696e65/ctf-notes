@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# To 'reverse' byte order in  the binary, we used:
+# To 'reverse' byte order in the binary, we used:
 # http://www.bernstein-plus-sons.com/.dowling/CSC080/reverse_c.html
 
 # Then it was necessary to replace the first 4 bytes (FLAG) with \x7fELF
