@@ -3,8 +3,8 @@
 SQL Injection locator:
 
 ```
-GET /?page=article&artid=3'-2-'&addToCart HTTP/1.1   # Girlybot  (1)
-GET /?page=article&artid=3'-1-'&addToCart HTTP/1.1   # Shogirl   (2)
+GET /?page=article&artid=3'-2-'&addToCart HTTP/1.1   # Shogirl   (1)
+GET /?page=article&artid=3'-1-'&addToCart HTTP/1.1   # Shobot    (2)
 GET /?page=article&artid=3'-0-'&addToCart HTTP/1.1   # Musclebot (3)
 GET /?page=article&artid=77'-76-'&addToCart HTTP/1.1 # Shogirl   (1)
 ```
