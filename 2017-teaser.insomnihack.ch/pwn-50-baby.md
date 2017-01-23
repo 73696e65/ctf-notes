@@ -1,5 +1,14 @@
 # baby - Pwn - 50 pts - realized by grimmlin
 
+```
+gdb-peda$ checksec
+CANARY    : ENABLED
+FORTIFY   : disabled
+NX        : ENABLED
+PIE       : ENABLED
+RELRO     : FULL
+```
+
 Exploit: 
 
 ```python
