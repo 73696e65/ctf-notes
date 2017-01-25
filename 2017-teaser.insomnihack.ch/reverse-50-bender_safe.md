@@ -1,6 +1,6 @@
 # bender_safe - Reverse - 50 pts - created by grimmlin
 
-Keygen (it contains a small bug, but because it mostly works, I don't care).
+Keygen:
 
 ```python
 #!/usr/bin/env python
@@ -24,13 +24,11 @@ if ord(OTP[3]) >= 0x41:
     reply += alphabet[(alphabet.index(OTP[3]) + 0xa) % len(alphabet)]
 else:
     reply += alphabet[(alphabet.index(OTP[3]) - 0xa) % len(alphabet)]
-    pass
 
 if ord(OTP[4]) >= 0x41:
     reply += alphabet[(alphabet.index(OTP[4]) + 0xa) % len(alphabet)]
 else:
     reply += alphabet[(alphabet.index(OTP[4]) - 0xa) % len(alphabet)]
-    pass
 
 reply += alphabet[abs(ord(OTP[2])-ord(OTP[1])) % len(alphabet)]
 reply += alphabet[abs(ord(OTP[6])-ord(OTP[5])) % len(alphabet)]
